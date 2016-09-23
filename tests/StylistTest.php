@@ -135,7 +135,6 @@
 
             //Assert
             $this->assertEquals($test_stylist_name, $result[0]);
-
         }
 
         function test_getAll()
@@ -158,7 +157,6 @@
 
             //Assert
             $this->assertEquals([$test_stylist_name, $test_stylist_name2], $result);
-
         }
 
         function test_deleteAll()
@@ -182,7 +180,6 @@
 
             //Assert
             $this->assertEquals([], $result);
-
         }
 
         function test_find()
@@ -205,7 +202,6 @@
 
             //Assert
             $this->assertEquals($test_stylist_name, $result);
-
         }
     }
 ?>
