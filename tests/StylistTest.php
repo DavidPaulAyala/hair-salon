@@ -53,7 +53,7 @@
             //Arrange
             $stylist_name = "James";
             $test_stylist_name = new Stylist($stylist_name);
-            $new_stylist_name = "James";
+            $new_stylist_name = "Sue";
 
             //Act
             $test_stylist_name->setStylist($new_stylist_name);

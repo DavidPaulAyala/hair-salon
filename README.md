@@ -23,8 +23,8 @@ _This application will allow a salon owner to create a list of stylists and assi
 * _CREATE DATABASE hair_salon_
 * _USE hair_salon_
 * _CREATE TABLE stylists(id serial PRIMARY KEY, stylists VARCHAR(255));_
-* __
-* __
+* _CREATE TABLE clients(id serial PRIMARY KEY, clients VARCHAR(255));_
+* _DROP DATABASE hair_salon_test;_
 * __
 * __
 
