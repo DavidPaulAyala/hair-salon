@@ -115,6 +115,24 @@
 
         }
 
+        function test_find()
+        {
+            //Arrange
+            $stylist_name = "James";
+            $stylist_name2 = "Barb";
+            $test_stylist_name = new Stylist($stylist_name);
+            $test_stylist_name->save();
+            $test_stylist_name2 = new Stylist($stylist_name2);
+            $test_stylist_name2->save();
+
+            //Act
+            $result = Stylist::find($test_stylist_name->getId());
+
+            //Assert
+            $this->assertEquals($test_stylist_name, $result);
+
+        }
+
         // function test_name()
         // {
         //     //Arrange
