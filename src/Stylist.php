@@ -1,12 +1,12 @@
 <?php
 class Stylist
 {
-    private $stylist;
+    private $stylist_name;
     private $id;
 
-    function __construct($stylist, $id = null)
+    function __construct($stylist_name, $id = null)
     {
-        $this->stylist = $stylist;
+        $this->stylist_name = $stylist_name;
         $this->id = $id;
     }
 
@@ -17,12 +17,36 @@ class Stylist
 
     function getStylist()
     {
-        return $this->stylist;
+        return $this->stylist_name;
     }
 
-    function setStylist($new_stylist)
+    function setStylist($new_stylist_name)
     {
-        $this->stylist = (string) $new_stylist;
+        $this->stylist_name = (string) $new_stylist_name;
+    }
+
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name) VALUES ('{$this->getStylist()}')");
+        $this->id = $GLOBALS['DB']->lastinsertId();
+    }
+
+    static function getAll()
+    {
+      $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+      $stylists = array();
+      foreach($returned_stylists as $stylist) {
+          $stylist_name = $stylist['stylist_name'];
+          $id = $stylist['id'];
+          $new_stylist = new Stylist($stylist_name, $id);
+          array_push($stylists, $new_stylist);
+      }
+      return $stylists;
+    }
+
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stylists;");
     }
 }
 ?>

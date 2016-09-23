@@ -15,21 +15,21 @@
     class StylistTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        //     Stylist::deleteAll();
-        //     Client::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+            // Client::deleteAll();
+        }
 
         function test_getId()
         {
             //Arrange
             $id = 1;
-            $stylist = "James";
-            $test_stylist = new Stylist($stylist, $id);
+            $stylist_name = "James";
+            $test_stylist_name = new Stylist($stylist_name, $id);
 
             //Act
-            $result = $test_stylist->getId();
+            $result = $test_stylist_name->getId();
 
             //Assert
             $this->assertEquals($id, $result);
@@ -38,29 +38,91 @@
         function test_getStylist()
         {
             //Arrange
-            $stylist = "James";
-            $test_stylist = new Stylist($stylist);
+            $stylist_name = "James";
+            $test_stylist_name = new Stylist($stylist_name);
 
             //Act
-            $result = $test_stylist->getStylist();
+            $result = $test_stylist_name->getStylist();
 
             //Assert
-            $this->assertEquals($stylist, $result);
+            $this->assertEquals($stylist_name, $result);
         }
 
         function test_setStylist()
         {
             //Arrange
-            $stylist = "James";
-            $test_stylist = new Stylist($stylist);
-            $new_stylist = "James";
+            $stylist_name = "James";
+            $test_stylist_name = new Stylist($stylist_name);
+            $new_stylist_name = "James";
 
             //Act
-            $test_stylist->setStylist($new_stylist);
-            $result = $test_stylist->getStylist();
+            $test_stylist_name->setStylist($new_stylist_name);
+            $result = $test_stylist_name->getStylist();
 
             //Assert
-            $this->assertEquals($new_stylist, $result);
+            $this->assertEquals($new_stylist_name, $result);
         }
+
+        function test_save()
+        {
+            //Arrange
+            $stylist_name = "James";
+            $test_stylist_name = new Stylist($stylist_name);
+            $test_stylist_name->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals($test_stylist_name, $result[0]);
+
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $stylist_name = "James";
+            $stylist_name2 = "Barb";
+            $test_stylist_name = new Stylist($stylist_name);
+            $test_stylist_name->save();
+            $test_stylist_name2 = new Stylist($stylist_name2);
+            $test_stylist_name2->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([$test_stylist_name, $test_stylist_name2], $result);
+
+        }
+
+        function test_deleteAll()
+        {
+          //Arrange
+          $stylist_name = "James";
+          $stylist_name2 = "Barb";
+          $test_stylist_name = new Stylist($stylist_name);
+          $test_stylist_name->save();
+          $test_stylist_name2 = new Stylist($stylist_name2);
+          $test_stylist_name2->save();
+
+          //Act
+          Stylist::deleteAll();
+          $result = Stylist::getAll();
+
+          //Assert
+          $this->assertEquals([], $result);
+
+        }
+
+        // function test_name()
+        // {
+        //     //Arrange
+        //
+        //     //Act
+        //
+        //     //Assert
+        //
+        // }
     }
 ?>
