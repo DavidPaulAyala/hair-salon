@@ -3,13 +3,11 @@ class Stylist
 {
     private $stylist_name;
     private $id;
-    private $client_id;
 
-    function __construct($stylist_name, $assigned_client_id, $id = null)
+    function __construct($stylist_name, $id = null)
     {
         $this->stylist_name = $stylist_name;
         $this->id = $id;
-        $this->client_id = $assigned_client_id;
     }
 
     function getId()
@@ -22,27 +20,17 @@ class Stylist
         return $this->stylist_name;
     }
 
-    function getClientId()
-    {
-        return $this->client_id;
-    }
-
     function setStylist($new_stylist_name)
     {
         $this->stylist_name = (string) $new_stylist_name;
     }
 
-    function setClientId($new_client_id)
-    {
-        $this->client_id = (int) $new_client_id;
-    }
-
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name, client_id) VALUES ('{$this->getStylist()}', {$this->getClientId()})");
+        $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name) VALUES ('{$this->getStylist()}')");
         $this->id = $GLOBALS['DB']->lastinsertId();
     }
-
+    
     static function getAll()
     {
       $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
@@ -50,8 +38,7 @@ class Stylist
       foreach($returned_stylists as $stylist) {
           $stylist_name = $stylist['stylist_name'];
           $id = $stylist['id'];
-          $client_id = $stylist['client_id'];
-          $new_stylist = new Stylist($stylist_name,$client_id, $id);
+          $new_stylist = new Stylist($stylist_name, $id);
           array_push($stylists, $new_stylist);
       }
       return $stylists;

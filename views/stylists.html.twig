@@ -1,0 +1,28 @@
+
+<html>
+<head>
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>Stylists</h1>
+    {% if stylists is not empty %}
+        <p>Here's a list of stylists:</p>
+        <ul>
+            {% for stylist in stylists %}
+                <li>{{ stylist.getStylist }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action='/stylists' method='post'>
+    <label for='name'>Stylist name</label>
+    <input id='name' name='name' type='text'>
+
+    <button type='submit'>Add stylist</button>
+    </form>
+    <form action='/delete_stylists' method='post'>
+    <button type='submit'>Clear Stylist List</button>
+    </form>
+    <p><a href='/'>Home</a></p>
+</body>
+</html>

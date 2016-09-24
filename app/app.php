@@ -19,7 +19,39 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views'
 ));
 
+$app->get("/", function() use ($app) {
+    return $app['twig']->render('index.html.twig');
+});
 
+$app->get("/stylists", function() use ($app) {
+    return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+});
+
+$app->get("/clients", function() use ($app) {
+    return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
+});
+
+$app->post("/stylists", function() use ($app) {
+    $stylist = new Stylist($_POST['name']);
+    $stylist->save();
+    return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+});
+
+$app->post("/delete_stylists", function() use ($app) {
+    Stylist::deleteAll();
+    return $app['twig']->render('index.html.twig');
+});
+
+$app->post("/clients", function() use ($app) {
+    $client = new Client($_POST['name']);
+    $client->save();
+    return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
+});
+
+$app->post("/delete_clients", function() use ($app) {
+    Client::deleteAll();
+    return $app['twig']->render('index.html.twig');
+});
 
 return $app;
 ?>
