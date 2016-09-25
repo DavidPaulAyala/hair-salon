@@ -39,7 +39,7 @@ class Client
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO clients (client_name) VALUES ('{$this->getClient()}', {$this->getStylistId()})");
+        $GLOBALS['DB']->exec("INSERT INTO clients (client_name, stylist_id) VALUES ('{$this->getClient()}', {$this->getStylistId()})");
         $this->id = $GLOBALS['DB']->lastinsertId();
     }
 
