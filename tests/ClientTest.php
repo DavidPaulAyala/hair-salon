@@ -208,35 +208,7 @@
             $this->assertEquals($test_client, $result);
 
         }
-        // function testGetStylists()
-        // {
-        //     //Arrange
-        //     $client_name = "Cheryl";
-        //     $client_name2 = "Francis";
-        //     $test_client_name = new Client($client_name);
-        //     $test_client_name->save();
-        //     $test_client_id = $test_client_name->getId();
-        //     $test_client_name2 = new Client($client_name2);
-        //     $test_client_name2->save();
-        //     $test_client_id2 = $test_client_name2->getId();
-        //
-        //     $stylist_name = "Rachel";
-        //     $test_stylist_name = new Stylist($stylist_name, $test_client_id);
-        //     $test_stylist_name->save();
-        //
-        //     $stylist_name2 = "Sheila";
-        //     $test_stylist_name2 = new Stylist($stylist_name2, $test_client_id);
-        //     $test_stylist_name2->save();
-        //
-        //     $stylist_name3 = "Connie";
-        //     $test_stylist_name3 = new Stylist($stylist_name3, $test_client_id2);
-        //     $test_stylist_name3->save();
-        //
-        //     //Act
-        //     $result = $test_client_name->getStylists();
-        //
-        //     //Assert
-        //     $this->assertEquals([$test_stylist_name, $test_stylist_name2], $result);
-        // }
-      }
+
+
+    }
 ?>

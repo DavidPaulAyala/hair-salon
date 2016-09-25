@@ -30,7 +30,7 @@ class Stylist
         $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name) VALUES ('{$this->getStylist()}')");
         $this->id = $GLOBALS['DB']->lastinsertId();
     }
-    
+
     static function getAll()
     {
       $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
@@ -61,5 +61,16 @@ class Stylist
         }
         return $found_stylist;
     }
+
+    function update($new_stylist_name)
+    {
+        $GLOBALS['DB']->exec("UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};");
+        $this->setStylist($new_stylist_name);
+    }
+
+    function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+        }
 }
 ?>

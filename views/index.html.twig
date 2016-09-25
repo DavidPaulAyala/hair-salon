@@ -6,8 +6,24 @@
   <body>
     <h1>Welcome to the Hair Salon Manager</h1>
 
-    <p><a href="/stylists">Click here</a> to see all of the stylists and to add a stylist.</p>
-    <p><a href="/clients">Click here</a> to see all of the clients and to add a client.</p>
+    <p>Add a new stylist:</p>
 
+    <form action="/stylists" method="post">
+        <label for="name">Stylist name:</label>
+        <input id="name" name="name" type="text">
+
+        <button type="submit">Add stylist</button>
+    </form>
+
+    {% if stylists is not empty %}
+        <p>Here are all your stylists:</p>
+        <ul>
+            {% for stylist in stylists %}
+                <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylist }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+      <p>There are no stylists yet!</p>
+    {% endif %}
   </body>
 </html>
