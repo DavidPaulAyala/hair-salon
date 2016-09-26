@@ -129,40 +129,40 @@
         }
 
         function testUpdate()
-            {
-                //Arrange
-                $stylist_name = "James";
-                $id = null;
-                $test_stylist = new Stylist($stylist_name, $id);
-                $test_stylist->save();
+        {
+            //Arrange
+            $stylist_name = "James";
+            $id = null;
+            $test_stylist = new Stylist($stylist_name, $id);
+            $test_stylist->save();
 
-                $new_stylist_name = "Summer";
+            $new_stylist_name = "Summer";
 
-                //Act
-                $test_stylist->update($new_stylist_name);
+            //Act
+            $test_stylist->update($new_stylist_name);
 
-                //Assert
-                $this->assertEquals("Summer", $test_stylist->getStylist());
-            }
+            //Assert
+            $this->assertEquals("Summer", $test_stylist->getStylist());
+        }
 
-            function testDelete()
-                {
-                    //Arrange
-                    $stylist_name = "James";
-                    $id = null;
-                    $test_stylist = new Stylist($stylist_name, $id);
-                    $test_stylist->save();
+        function testDelete()
+        {
+            //Arrange
+            $stylist_name = "James";
+            $id = null;
+            $test_stylist = new Stylist($stylist_name, $id);
+            $test_stylist->save();
 
-                    $stylist_name2 = "Janice";
-                    $test_stylist2 = new Stylist($stylist_name2, $id);
-                    $test_stylist2->save();
+            $stylist_name2 = "Janice";
+            $test_stylist2 = new Stylist($stylist_name2, $id);
+            $test_stylist2->save();
 
 
-                    //Act
-                    $test_stylist->delete();
+            //Act
+            $test_stylist->delete();
 
-                    //Assert
-                    $this->assertEquals([$test_stylist2], Stylist::getAll());
-                }
+            //Assert
+            $this->assertEquals([$test_stylist2], Stylist::getAll());
+        }
     }
 ?>
