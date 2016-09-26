@@ -5,9 +5,8 @@
   </head>
   <body>
     <h1>Clients</h1>
-
     {% if clients is not empty %}
-        <p>Here's a list of clients:</p>
+        <p>Here are all your clients:</p>
         <ul>
             {% for client in clients %}
                 <li>{{ client.getClient }}</li>
@@ -16,14 +15,16 @@
     {% endif %}
 
     <form action='/clients' method='post'>
-    <label for='name'>Client name</label>
-    <input id='name' name='name' type='text'>
+        <label for='name'>Client name</label>
+        <input id='name' name='name' type='text'>
 
-    <button type='submit'>Add client</button>
+        <button type='submit'>Add client</button>
     </form>
     <form action='/delete_clients' method='post'>
-    <button type='submit'>Clear Client List</button>
+        <button type='submit'>Clear</button>
     </form>
+
     <p><a href='/'>Home</a></p>
-</body>
+
+  </body>
 </html>
