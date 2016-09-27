@@ -4,9 +4,10 @@
     <title>Hair Salon</title>
   </head>
   <body>
-    <h1>Clients</h1>
+    <h1>{{ stylist.getStylist }}</h1>
+
     {% if clients is not empty %}
-        <p>Here are all your clients:</p>
+        <p>Here are all your stylists:</p>
         <ul>
             {% for client in clients %}
                 <li>{{ client.getClient }}</li>
@@ -14,7 +15,10 @@
         </ul>
     {% endif %}
 
+    <h3>Add a client</h3>
+
     <form action='/clients' method='post'>
+        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
         <label for='name'>Client name</label>
         <input id='name' name='name' type='text'>
 
