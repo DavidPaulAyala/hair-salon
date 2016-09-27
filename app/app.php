@@ -43,7 +43,7 @@ $app->post("/delete_stylists", function() use ($app) {
 });
 
 $app->post("/clients", function() use ($app) {
-    $client = new Client($_POST['name']);
+    $client = new Client($_POST['name'], $_POST['id'] );
     $client->save();
     return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
 });

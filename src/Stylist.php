@@ -62,20 +62,6 @@ class Stylist
         return $found_stylist;
     }
 
-    // function getClients()
-    // {
-    //     $clients = Array();
-    //     $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
-    //     foreach($returned_clients as $client) {
-    //         $client_name = $client['client_name'];
-    //         $id = $client['id'];
-    //         $stylist_id = $client['stylist_id'];
-    //         $new_client = new Client($client_name, $id, $stylist_id);
-    //         array_push($clients, $new_client);
-    //     }
-    //     return $clients;
-    // }
-
     function update($new_stylist_name)
     {
         $GLOBALS['DB']->exec("UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};");
@@ -85,6 +71,7 @@ class Stylist
     function delete()
     {
         $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
     }
 }
 ?>
