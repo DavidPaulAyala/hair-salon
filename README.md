@@ -11,12 +11,16 @@ _This application will allow a salon owner to create a list of stylists and assi
 
 |Behavior|Input|Output|
 |--------|:---:|-----:|
-|Obtain Stylist Id|1|1|
-|Obtain Stylist Name|James|James|
-||||
-||||
-||||
-||||
+|Saves Stylist Name|James|James|
+|Retrieves List of Stylists Names|James, Jane, Janice|James, Jane, Janice|
+|Deletes entire List of Stylists Names|Delete: James, Jane, Janice|List Empty|
+|Finds one Stylist from a list of stylist|Find Jane from list of James, Jane, Janice|Jane|
+|Change the name of a stylist|Change James to Frank|Frank|
+|Save Client Name|Sally|Sally|
+|Assign Clients to Stylists|Assign Sally to James|James Clients: Sally|
+|Change the name of a Client|Change Sally to Rita|Rita|
+|View Stylist's Clients|View James' Clients|Sally, Sharon, Sue|
+|Delete Stylist's Clients|View James' Clients|list empty|
 
 ## MySQL Commands Used (included as backup)
 
@@ -24,20 +28,16 @@ _This application will allow a salon owner to create a list of stylists and assi
 * _USE hair_salon_
 * _CREATE TABLE stylists(id serial PRIMARY KEY, stylists VARCHAR(255));_
 * _CREATE TABLE clients(id serial PRIMARY KEY, clients VARCHAR(255));_
-* _DROP DATABASE hair_salon_test;_
 * _ALTER TABLE clients ADD stylist_id int;_
-* _DROP DATABASE hair_salon_test;_
-* __
-* __
-* __
-
 
 ## Setup Instructions
 
 * _Clone the program from its github repository_
 * _Navigate to the project directory in a command line software._
+* _Type composer install_
 * _Type: "cd web" to move into the "web" folder._
 * _Type: "php -S localhost:8000" to create a local server for the project_
+* _import the included sql.zip database files to MYSQL_
 * _Open the browser of your choice and type in this URL to load the project: "localhost:8000"_
 
 ## Licensing
