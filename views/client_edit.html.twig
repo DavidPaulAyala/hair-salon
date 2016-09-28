@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hair Salon</title>
+  </head>
+  <body>
+    <h1>Update information for the client {{ client.getClient }} </h1>
+
+    <form action="/clients/{{ client.getId }}" method="post">
+      <input name="_method" type="hidden" value="patch">
+
+      <label for="name">Rename your client:</label>
+      <input id="name" name="name" type="text">
+
+      <button type="submit">Update</button>
+    </form>
+
+    <form action="/clients/{{ client.getId }}" method="post">
+      <input name="_method" type="hidden" value="delete">
+
+      <button type="submit">Delete this client</button>
+    </form>
+
+  </body>
+</html>
