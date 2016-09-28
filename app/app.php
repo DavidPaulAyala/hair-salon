@@ -19,17 +19,20 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views'
 ));
 
+use Symfony\Component\HttpFoundation\Request;
+Request::enableHttpMethodParameterOverride();
+
 $app->get("/", function() use ($app) {
     return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
 });
 
-$app->get("/clients", function() use ($app) {
-    return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
-});
-
-$app->get("/stylists", function() use ($app) {
-    return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
-});
+// $app->get("/clients", function() use ($app) {
+//     return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
+// });
+//
+// $app->get("/stylists", function() use ($app) {
+//     return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+// });
 
 $app->post("/stylists", function() use ($app) {
     $stylist = new Stylist($_POST['name']);
@@ -61,10 +64,29 @@ $app->get("/stylists/{id}", function($id) use ($app) {
     return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->findClients()));
 });
 
+$app->post("/stylist/{id}", function($id) use ($app) {
+    $stylist = Stylist::find($id);
+    $new_client = new Client($_POST['name'], $stylist->getId());
+    $new_client->save();
+    return $app['twig']->render('stylist.html.twig', array ('stylist' => $stylist, 'clients' => $stylist->findClients()));
+});
+
+$app->patch("/stylists/{id}", function($id) use ($app) {
+    $name = $_POST['name'];
+    $stylist = Stylist::find($id);
+    $stylist->update($name);
+    return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->findClients()));
+});
+
 $app->delete("/stylists/{id}", function($id) use ($app) {
     $stylist = Stylist::find($id);
     $stylist->delete();
     return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+});
+
+$app->get("/stylists/{id}/edit", function($id) use ($app) {
+    $stylist = Stylist::find($id);
+    return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
 });
 
 return $app;
