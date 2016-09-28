@@ -1,0 +1,33 @@
+body {
+  background-image: url("../img/salon.jpg");
+  background-size: cover;
+}
+
+h1 {
+  color: silver;
+}
+
+h3 {
+  color: silver;
+}
+
+h4 {
+  color: silver;
+}
+
+h5 {
+  color: silver;
+}
+
+.label {
+  color:silver;
+}
+
+.col-sm-4 {
+  float: left;
+}
+
+.well {
+  background-color: transparent;
+  border: none;
+}

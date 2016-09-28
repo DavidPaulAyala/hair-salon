@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hair Salon</title>
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+      <link rel="stylesheet" href="/css/styles.css">
+      <title>Hair Salon</title>
   </head>
   <body>
+    <div class="container">
       <h1>Welcome to the Hair Salon Manager</h1>
+      <div class="row well">
+        <div class="col-sm-4">
 
-      <p>Create a new stylist:</p>
-
-      <form action="/stylists" method="post">
-          <label for="name">Stylist name:</label>
-          <input id="name" name="name" type="text">
-
-          <button type="submit">Add stylist</button>
-      </form>
 
       {% if stylists is not empty %}
-          <p>Here are all your stylists:</p>
-          <ul>
+          <h4>Here are all your stylists:</h4>
               {% for stylist in stylists %}
-                  <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylist }}</a></li>
+                  <h4>{{ stylist.getStylist }}
+                    <a href="/stylists/{{ stylist.getId }}" class="btn btn-warning btn-xs" role="button">Edit Stylist</a></h4>
               {% endfor %}
-          </ul>
       {% else %}
-        <p>There are no stylists yet!</p>
+        <h3>There are no stylists on your list. Please enter a name below.</h3>
       {% endif %}
 
+      <h5>Create a new stylist:</h5>
+
+      <form action="/stylists" method="post">
+          <label class="label" for="name">New Stylist Name:</label>
+          <input id="name" name="name" type="text" placeholder="First, Last" required>
+          <br>
+          <br>
+          <button type="submit">Add stylist</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

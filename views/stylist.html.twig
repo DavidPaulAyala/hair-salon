@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+      <link rel="stylesheet" href="/css/styles.css">
     <title>Hair Salon</title>
   </head>
   <body>
-    <h1>Clients of {{ stylist.getStylist }}</h1>
-
+    <div class="container">
+    <h1>Clients for Stylist: {{ stylist.getStylist }}</h1>
+    <div class="row well">
+      <div class="col-sm-4">
     {% if clients is not empty %}
         {% for client in clients %}
-            <h3>{{ client.getClient }}</h3>
-            <!-- <form action='/delete_clients' method='post'>
-                <button type='submit'>Edit</button>
-                 -->
-                <form action='/clients/{{ client.getId }}' method='post'>
-                    <input name='_method' type='hidden' value='delete'>
-                    <p><a href="/clients/{{ client.getId }}/edit">Edit client</a></p>
-                    <button type='submit'>Edit this client</button>
-                </form>
+            <h3>{{ client.getClient }}
+            <a href="/clients/{{ client.getId }}/edit" class="btn btn-warning" role="button">Edit Client</a></h3>
         {% endfor %}
+        {% else %}
+          <h3>There are no clients assigned to {{ stylist.getStylist }}. Please enter a name below.</h3>
     {% endif %}
 
     <h3>Add a client</h3>
 
     <form action='/stylist/{{ stylist.getId }}' method='post'>
-        <input name="name" type="text">
-        <button type='submit'>Add client</button>
+        <input name="name" type="text" placeholder="First, Last" required>
+        <button type='submit' class="btn btn-default">Add Client</button>
     </form>
-
-    <p><a href="/stylists/{{ stylist.getId }}/edit">Edit this stylist</a></p>
-
-    <p><a href='/'>Home</a></p>
-
+    <br>
+    <a href="/stylists/{{ stylist.getId }}/edit" class="btn btn-success" role="button">Edit this stylist</a>
+    <br>
+    <br>
+    <a href='/' class="btn btn-primary" role="button">Home</a>
+    </div>
+    </div>
+    </div
   </body>
 </html>
